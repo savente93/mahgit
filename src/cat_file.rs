@@ -26,7 +26,7 @@ fn read_zlib_file(path: PathBuf) -> Result<String> {
     Ok(decoded_file_contents)
 }
 
-fn path_from_object_name(object: String) -> PathBuf {
+pub fn path_from_object_name(object: String) -> PathBuf {
     let dir = &object[0..2];
     let file_name = &object[2..];
     let path = PathBuf::new()

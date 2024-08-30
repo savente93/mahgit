@@ -2,10 +2,11 @@ mod cat_file;
 mod cli;
 mod hash_object;
 mod init;
-mod object;
+
+use std::{fs::create_dir_all, io::Write};
 
 use anyhow::Result;
-use cat_file::cat_file;
+use cat_file::{cat_file, path_from_object_name};
 use cli::*;
 use hash_object::hash_object;
 use init::init_repo;
@@ -27,6 +28,13 @@ fn main() -> Result<()> {
         }
         Commands::HashObject { path, write } => {
             let hash = hash_object(path)?;
+            if write {
+                let hash_str = String::from_utf8(hash.clone())?;
+                let path = path_from_object_name(hash_str);
+                create_dir_all(path.parent().unwrap())?;
+                let mut file = std::fs::File::create(path)?;
+                file.write_all(&hash)?;
+            }
             Ok(())
         }
     }
