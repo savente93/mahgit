@@ -8,7 +8,7 @@ use std::{fs::create_dir_all, io::Write};
 use anyhow::Result;
 use cat_file::{cat_file, path_from_object_name};
 use cli::*;
-use hash_object::hash_object;
+use hash_object::{hash_object_on_disk, write_object_to_db};
 use init::init_repo;
 
 use clap::Parser;
@@ -27,13 +27,9 @@ fn main() -> Result<()> {
             Ok(())
         }
         Commands::HashObject { path, write } => {
-            let hash = hash_object(path)?;
+            let hash = hash_object_on_disk(path)?;
             if write {
-                let hash_str = String::from_utf8(hash.clone())?;
-                let path = path_from_object_name(hash_str);
-                create_dir_all(path.parent().unwrap())?;
-                let mut file = std::fs::File::create(path)?;
-                file.write_all(&hash)?;
+                write_object_to_db(hash, contents)
             }
             Ok(())
         }
