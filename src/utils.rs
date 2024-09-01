@@ -3,7 +3,7 @@ use std::path::PathBuf;
 /// calculates the path to the object in the git database.
 /// object should be a string containing a hash
 /// for a hash abcdefg the path should be .git/objects/ab/cdefg
-pub fn path_from_object_name(object: String) -> PathBuf {
+pub fn path_from_object_name(object: &str) -> PathBuf {
     let dir = &object[0..2];
     let file_name = &object[2..];
     let path = PathBuf::new()
@@ -20,10 +20,6 @@ mod test {
     use super::*;
     use anyhow::Result;
 
-    #[test]
-    fn test_a1a2a3a4b1b2c1c2d1d2d3d4d5d6d7d8() -> Result<()> {
-        Ok(())
-    }
     #[test]
     fn test_8386b2faa5c220a8ae74a9b5b93ab58e820c21b9() -> Result<()> {
         let test_hash = String::from("8386b2faa5c220a8ae74a9b5b93ab58e820c21b9");

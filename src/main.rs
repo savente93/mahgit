@@ -34,7 +34,9 @@ fn main() -> Result<()> {
             let hash = sha1_blob(&file_bytes)?;
             print!("{:x?}", hash);
             if write {
-                write_object_to_db(hash, file_bytes)
+                let _ = write_object_to_db(file_bytes)?;
+                println!("{:x?}", hash);
+                Ok(())
             } else {
                 Ok(())
             }
