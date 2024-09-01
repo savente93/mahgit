@@ -10,8 +10,9 @@ use std::fs;
 use anyhow::Result;
 use cat_file::cat_file;
 use cli::*;
-use hash_object::{sha1_blob, write_object_to_db};
+use hash_object::sha1_blob;
 use init::init_repo;
+use io::write_object_to_db;
 
 use clap::Parser;
 fn main() -> Result<()> {

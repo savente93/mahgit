@@ -1,12 +1,6 @@
 use anyhow::Result;
-use flate2::write::ZlibEncoder;
-use flate2::Compression;
-use std::fs::create_dir_all;
 
 use sha1::{Digest, Sha1};
-use std::io::prelude::*;
-
-use crate::utils::path_from_object_name;
 
 pub fn sha1_blob(contents: &[u8]) -> Result<Vec<u8>> {
     let header = format!("blob {}\x00", contents.len());
@@ -17,14 +11,55 @@ pub fn sha1_blob(contents: &[u8]) -> Result<Vec<u8>> {
     Ok(sha.iter().cloned().collect())
 }
 
-pub fn write_object_to_db(hash: Vec<u8>, contents: Vec<u8>) -> Result<()> {
-    let hash_str = String::from_utf8(hash.clone())?;
-    let path = path_from_object_name(hash_str);
-    create_dir_all(path.parent().unwrap())?;
-    let mut e = ZlibEncoder::new(Vec::new(), Compression::default());
-    e.write_all(&contents)?;
-    let compressed_bytes = e.finish()?;
-    let mut file = std::fs::File::create(path)?;
-    file.write_all(&compressed_bytes)?;
-    Ok(())
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    use std::fs::File;
+    use std::io::{self, Write};
+    use std::process::{Command, Stdio};
+    use uuid::Uuid;
+
+    // fn test_against_git_binary(contents: String) -> Result<()> {
+
+    //     let tmp = std::env::temp_dir();
+    //     let path = tmp.join(Uuid::new_v4().to_string());
+    //     let mut file = File::open(path)?;
+    //     file.write(contents.as_bytes());
+    //     let _ = file;
+    //     Ok(())
+    // }
+    // #[test]
+    // fn test_sha1_blob_matches_git_impl() -> Result<()> {
+    //     let test_cases: Vec<String> = vec![
+    //         "hello world",
+    //         "asdf",
+    //         "حمد علي",
+    //         "由紀夫 三島",
+    //         "אברהם לינקול",
+    //     ]
+    //     .into_iter()
+    //     .map(String::from)
+    //     .collect();
+
+    //     for t in test_cases.iter() {
+    //         let
+    //         let mut child = Command::new("git")
+    //             .args(["hash-object", "--stdin"])
+    //             .stdout(Stdio::piped())
+    //             .stdin(Stdio::piped())
+    //             .spawn()
+    //             .unwrap();
+    //         let child_stdin = child.stdin.as_mut().unwrap();
+    //         child_stdin.write_all(t.as_bytes())?;
+    //         // Close stdin to finish and avoid indefinite blocking
+    //         let _ = child_stdin;
+
+    //         let output = child.wait_with_output()?;
+
+    //         let hash = sha1_blob(t.as_bytes())?;
+    //         assert_eq!(hash, output.stdout, "{}", t);
+    //     }
+    //     Ok(())
+    // }
 }
