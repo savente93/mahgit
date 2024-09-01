@@ -2,13 +2,15 @@ mod cat_file;
 mod cli;
 mod hash_object;
 mod init;
+mod io;
+mod utils;
 
-use std::{fs::create_dir_all, io::Write};
+use std::fs;
 
 use anyhow::Result;
-use cat_file::{cat_file, path_from_object_name};
+use cat_file::cat_file;
 use cli::*;
-use hash_object::{hash_object_on_disk, write_object_to_db};
+use hash_object::{sha1_blob, write_object_to_db};
 use init::init_repo;
 
 use clap::Parser;
@@ -27,11 +29,14 @@ fn main() -> Result<()> {
             Ok(())
         }
         Commands::HashObject { path, write } => {
-            let hash = hash_object_on_disk(path)?;
+            let file_bytes = fs::read(path)?;
+            let hash = sha1_blob(&file_bytes)?;
+            print!("{:x?}", hash);
             if write {
-                write_object_to_db(hash, contents)
+                write_object_to_db(hash, file_bytes)
+            } else {
+                Ok(())
             }
-            Ok(())
         }
     }
 }

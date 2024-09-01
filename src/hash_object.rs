@@ -1,22 +1,14 @@
 use anyhow::Result;
 use flate2::write::ZlibEncoder;
 use flate2::Compression;
-use std::{
-    fs::{self, create_dir_all},
-    path::PathBuf,
-};
+use std::fs::create_dir_all;
 
 use sha1::{Digest, Sha1};
 use std::io::prelude::*;
 
-use crate::cat_file::path_from_object_name;
+use crate::utils::path_from_object_name;
 
-pub fn hash_object_on_disk(path: PathBuf) -> Result<Vec<u8>> {
-    let file_bytes = fs::read(path)?;
-    sha1_blob(file_bytes)
-}
-
-pub fn sha1_blob(contents: Vec<u8>) -> Result<Vec<u8>> {
+pub fn sha1_blob(contents: &[u8]) -> Result<Vec<u8>> {
     let header = format!("blob {}\x00", contents.len());
     let mut hasher = Sha1::new();
     hasher.update(header.as_bytes());
