@@ -1,6 +1,10 @@
 use anyhow::{anyhow, Result};
 use std::{fs, path::PathBuf};
 
+/// Will initialize a git respository at the provided path
+/// or the CWD if none is provided.
+/// will abort if a non empty `.git` directory is found at the
+/// used path
 pub fn init_repo(dir: Option<PathBuf>) -> Result<()> {
     let root = match dir {
         Some(p) => p,

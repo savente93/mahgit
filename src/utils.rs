@@ -22,7 +22,7 @@ mod test {
 
     #[test]
     fn test_8386b2faa5c220a8ae74a9b5b93ab58e820c21b9() -> Result<()> {
-        let test_hash = String::from("8386b2faa5c220a8ae74a9b5b93ab58e820c21b9");
+        let test_hash = "8386b2faa5c220a8ae74a9b5b93ab58e820c21b9";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/83/86b2faa5c220a8ae74a9b5b93ab58e820c21b9"),
@@ -32,7 +32,7 @@ mod test {
     }
     #[test]
     fn test_221efa35a4b4c697c973bdbc78558d565a232dc8() -> Result<()> {
-        let test_hash = String::from("221efa35a4b4c697c973bdbc78558d565a232dc8");
+        let test_hash = "221efa35a4b4c697c973bdbc78558d565a232dc8";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/22/1efa35a4b4c697c973bdbc78558d565a232dc8"),
@@ -42,7 +42,7 @@ mod test {
     }
     #[test]
     fn test_deefedc393105f89a5ec0e9761d6da11f4c83248() -> Result<()> {
-        let test_hash = String::from("deefedc393105f89a5ec0e9761d6da11f4c83248");
+        let test_hash = "deefedc393105f89a5ec0e9761d6da11f4c83248";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/de/efedc393105f89a5ec0e9761d6da11f4c83248"),
@@ -52,7 +52,7 @@ mod test {
     }
     #[test]
     fn test_12a12f01f7ac40f557138e2e2783acecfe0518a7() -> Result<()> {
-        let test_hash = String::from("12a12f01f7ac40f557138e2e2783acecfe0518a7");
+        let test_hash = "12a12f01f7ac40f557138e2e2783acecfe0518a7";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/12/a12f01f7ac40f557138e2e2783acecfe0518a7"),
@@ -62,7 +62,7 @@ mod test {
     }
     #[test]
     fn test_18f6bbc42747ff6e55bdc600f69f05865a87f20e() -> Result<()> {
-        let test_hash = String::from("18f6bbc42747ff6e55bdc600f69f05865a87f20e");
+        let test_hash = "18f6bbc42747ff6e55bdc600f69f05865a87f20e";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/18/f6bbc42747ff6e55bdc600f69f05865a87f20e"),
@@ -72,7 +72,7 @@ mod test {
     }
     #[test]
     fn test_d870f8fdd408cb90d045a96965f8f8d55d6ff1a3() -> Result<()> {
-        let test_hash = String::from("d870f8fdd408cb90d045a96965f8f8d55d6ff1a3");
+        let test_hash = "d870f8fdd408cb90d045a96965f8f8d55d6ff1a3";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/d8/70f8fdd408cb90d045a96965f8f8d55d6ff1a3"),
@@ -82,7 +82,7 @@ mod test {
     }
     #[test]
     fn test_9818eb6e859ccb52e72243ef29348da61cdf9db5() -> Result<()> {
-        let test_hash = String::from("9818eb6e859ccb52e72243ef29348da61cdf9db5");
+        let test_hash = "9818eb6e859ccb52e72243ef29348da61cdf9db5";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/98/18eb6e859ccb52e72243ef29348da61cdf9db5"),
@@ -92,7 +92,7 @@ mod test {
     }
     #[test]
     fn test_c9dd251fedec7d835a1cf46ecfccda3d0faac937() -> Result<()> {
-        let test_hash = String::from("c9dd251fedec7d835a1cf46ecfccda3d0faac937");
+        let test_hash = "c9dd251fedec7d835a1cf46ecfccda3d0faac937";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/c9/dd251fedec7d835a1cf46ecfccda3d0faac937"),
@@ -102,7 +102,7 @@ mod test {
     }
     #[test]
     fn test_6257e894be730e48730978cc51ef235b469a3f15() -> Result<()> {
-        let test_hash = String::from("6257e894be730e48730978cc51ef235b469a3f15");
+        let test_hash = "6257e894be730e48730978cc51ef235b469a3f15";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/62/57e894be730e48730978cc51ef235b469a3f15"),
@@ -112,7 +112,7 @@ mod test {
     }
     #[test]
     fn test_065bf26b1d29cd4c77f7eaef9ec6ed8d4501cd54() -> Result<()> {
-        let test_hash = String::from("065bf26b1d29cd4c77f7eaef9ec6ed8d4501cd54");
+        let test_hash = "065bf26b1d29cd4c77f7eaef9ec6ed8d4501cd54";
         let path = path_from_object_name(test_hash);
         assert_eq!(
             PathBuf::from(".git/objects/06/5bf26b1d29cd4c77f7eaef9ec6ed8d4501cd54"),

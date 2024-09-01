@@ -24,7 +24,7 @@ fn main() -> Result<()> {
             pretty_print,
             object,
         } => {
-            let contents = cat_file(object)?;
+            let contents = cat_file(&object)?;
             let _ = pretty_print;
             print!("{}", contents);
             Ok(())
@@ -34,7 +34,7 @@ fn main() -> Result<()> {
             let hash = sha1_blob(&file_bytes)?;
             print!("{:x?}", hash);
             if write {
-                let _ = write_object_to_db(file_bytes)?;
+                let _ = write_object_to_db(&file_bytes)?;
                 println!("{:x?}", hash);
                 Ok(())
             } else {

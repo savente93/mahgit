@@ -3,8 +3,8 @@ use anyhow::{anyhow, Result};
 
 use crate::io::read_zlib_file;
 
-pub fn cat_file(object: String) -> Result<String> {
-    let path = path_from_object_name(object);
+pub fn cat_file(object: &str) -> Result<String> {
+    let path = path_from_object_name(&object);
 
     if !path.exists() {
         return Err(anyhow!("Could not read file because it does not exist"));
